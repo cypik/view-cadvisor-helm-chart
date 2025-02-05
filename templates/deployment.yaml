@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cadvisor
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: cadvisor
+  template:
+    metadata:
+      labels:
+        app: cadvisor
+    spec:
+      containers:
+        - name: cadvisor
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            privileged: false
+          ports:
+            - containerPort: 8080
+#          volumeMounts:
+#            - name: shared-cadvisor-volume
+#              mountPath: /rootfs
+#              readOnly: true
+#            - name: shared-cadvisor-volume
+#              mountPath: /var/run
+#              readOnly: true
+#            - name: shared-cadvisor-volume
+#              mountPath: /sys
+#              readOnly: true
+#            - name: shared-cadvisor-volume
+#              mountPath: /var/lib/docker
+#              readOnly: true
+#            - name: shared-cadvisor-volume
+#              mountPath: /dev/disk
+#              readOnly: true
+      volumes:
+        - name: shared-cadvisor-volume
+          persistentVolumeClaim:
+            claimName: cadvisor-pvc
