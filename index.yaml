@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  view-cadvisor:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-05-12T15:09:55.525409196+05:30"
+    description: A Helm chart for Kubernetes
+    digest: ef3eb09e88194dcf3d0f38b761f4460411a8c10049533c62558c370a8028e2fa
+    name: view-cadvisor
+    type: application
+    urls:
+    - https://cypik.github.io/view-cadvisor-helm-chart/view-cadvisor-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-05-12T15:09:55.52283013+05:30"
